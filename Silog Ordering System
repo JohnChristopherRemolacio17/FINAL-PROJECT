@@ -1,0 +1,206 @@
+using System;
+using System.Collections.Generic;
+
+namespace Remolacio
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> menu = new List<string>
+            {
+				"Longgasilog",
+				"Skinsilog",
+                "Shanghaisilog",
+				"Starsilog",
+				"Tocilog",
+				"Hotsilog",
+				"Footlongsilog",
+                "Porksilog",
+                "Chicksilog",
+				"Tapsilog",
+				"Spamsilog",
+                "Liempsilog",
+                "Bangsilog",
+                "Bagnetsilog",
+                "Sisiglog",
+				"Longskin",
+				"Shangskin",
+				"Shanglong",
+				"Liemtapa",
+				"Liempchick",
+				"Liempork",
+				"Liemphungarian",
+				"Liempshang",
+				"Liemplong",
+				"Liempskin",
+				"Taphungarian",
+				"Tappork",
+				"Tapchick",
+				"Tapshang",
+				"Taplong",
+				"Tapskin",
+				"Porkhungarian",
+				"Porkchick",
+				"Porklong",
+				"Porkshang",
+				"Porkskin",
+				"Chickhungarian",
+				"Chickshang",
+				"Chicklong",
+				"Chickskin",
+				"Shangahai'Hungarian",
+				"Extra Rice",
+				"Tinapa Rice",
+				
+            };
+
+            List<int> prices = new List<int>
+            {
+				45,
+				45,
+                55,
+				55,
+				60,
+				60,
+				65,
+                70,
+                70,
+				75,
+				75,
+                80,
+                80,
+                80,
+                80,
+				65,
+				70,
+				70,
+				120,
+				115,
+				115,
+				115,
+				100,
+				95,
+				95,
+				115,
+				110,
+				110,
+				95,
+				90,
+				90,
+				110,
+				110,
+				85,
+				90,
+				110,
+				90,
+				85,
+				85,
+				95,
+				95,
+				10,
+				15,
+				
+            };
+
+            List<string> orderList = new List<string>();
+            int totalCost = 0;
+
+            while (true)
+            {
+                ShowMainMenu();
+                string userInput = GetUserInput();
+
+                switch (userInput)
+                {
+                    case "1":
+						Console.WriteLine("---------------------------------------");
+                        Console.WriteLine("==========M N T SILOG MENU==========");
+						Console.WriteLine("---------------------------------------");
+                        for (int i = 0; i < menu.Count; i++)
+                        {
+                            Console.WriteLine($"{menu[i]} = {prices[i]}");
+                        }
+                        Console.WriteLine("");
+                        break;
+
+                    case "2":
+                        Console.WriteLine("Enter your order:");
+                        string order = Console.ReadLine();
+                        if (menu.Contains(order))
+                        {
+                            Console.WriteLine("Successfully added your order!");
+                            orderList.Add(order);
+                            totalCost += prices[menu.IndexOf(order)];
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sorry, the variant you entered is not available.");
+                        }
+                        Console.WriteLine("");
+                        break;
+
+                    case "3":
+                        Console.WriteLine("Enter the order you want to remove:");
+                        string removeOrder = Console.ReadLine();
+                        if (orderList.Contains(removeOrder))
+                        {
+                            Console.WriteLine("Successfully removed the order from the list!");
+                            orderList.Remove(removeOrder);
+                            totalCost -= prices[menu.IndexOf(removeOrder)];
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sorry, the order you entered is not in the list.");
+                        }
+						 Console.WriteLine("");
+                        break;
+
+                    case "4":
+                        Console.WriteLine("Here are Your Order");
+                        foreach (string orderItem in orderList)
+                        {
+                            Console.WriteLine($"{orderItem} = {prices[menu.IndexOf(orderItem)]}");
+                        }
+                        Console.WriteLine($"Total cost: {totalCost}");
+                        Console.WriteLine("");
+                        break;
+
+                    case "5":
+                        Console.WriteLine("");
+                        Console.WriteLine("Thank you for choosing MNT Silog Meals ❤");
+                        Console.WriteLine($"Your total cost is: {totalCost}");
+                        Console.WriteLine("Please proceed to the counter for your payment.");
+						 Console.WriteLine("Mura na masarap pa subok at uulit ulitin ❤");
+                        return;
+                }
+            }
+        }
+
+        static void ShowMainMenu()
+        {
+            Console.WriteLine("   **   ****     ");
+            Console.WriteLine("    *    *   **     ");
+            Console.WriteLine("    *    *   **     ");
+            Console.WriteLine("    *    *****    ");
+            Console.WriteLine(" * *    *  *      ");
+            Console.WriteLine("   *     *   **     ");
+			 Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("===== PLEASE INPUT A NUMBER =====");
+			 Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("1 to open Main Menu");
+            Console.WriteLine("2 to place an order");
+            Console.WriteLine("3 to remove an order");
+            Console.WriteLine("4 to view your order and total cost");
+            Console.WriteLine("5 to leave");
+            Console.WriteLine("");
+        }
+
+        static string GetUserInput()
+        {
+            Console.WriteLine("Customer Input:");
+            string input = Console.ReadLine();
+            return input;
+        }
+    }
+}
